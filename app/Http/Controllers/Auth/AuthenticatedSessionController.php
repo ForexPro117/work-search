@@ -33,7 +33,6 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         return back()->with('status', 'success');
-        return redirect()
     }
 
     /**

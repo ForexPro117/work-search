@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::view('/', 'main')
+Route::view('/', 'home')
     ->name('main');
 
+Route::view('/s', 'main');
 require __DIR__ . '/auth.php';
