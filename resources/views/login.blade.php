@@ -29,7 +29,8 @@
             </div>
             <div class="mt-3 d-flex justify-content-between align-items-center ">
                 <button type="submit" class="btn btn-primary">Войти</button>
-                <a href="/registration">Создать аккаунт</a>
+                <a href="/registrationUser">Стать соискателем</a>
+                <a href="/registration">Стать работодателем</a>
             </div>
         </form>
     </div>

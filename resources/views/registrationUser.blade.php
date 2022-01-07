@@ -1,9 +1,9 @@
 @extends('header')
-<title>Регистрация работодателя</title>
+<title>Регистрация соискателя</title>
 @section('bodyContent')
     <div class="container d-flex flex-column align-items-center mt-5">
-        <h1>Регистрация работодателя</h1>
-        <form method="POST" class="mt-4" style="width: 30%" action="{{ route('registerPOST') }}">
+        <h1>Регистрация соискателя</h1>
+        <form method="POST" class="mt-4" style="width: 30%" action="{{ route('registerUserPOST') }}">
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label fw-bolder">Имя</label>
@@ -30,15 +30,6 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="companyName" class="form-label fw-bolder">Название компании</label>
-                <input type="text" class="form-control" name="companyName"
-                       placeholder="Название компании...">
-                @error('companyName')
-                <label class="text-danger">{{ $message }}</label>
-                @enderror
-            </div>
-
-            <div class="mb-3">
                 <label for="Email2" class="form-label fw-bolder">Email</label>
                 <input type="email" class="form-control" name="email"
                        placeholder="email@example.com">
@@ -62,7 +53,7 @@
             <div class="mt-3 d-flex justify-content-between align-items-center ">
                 <button type="submit" class="btn btn-success">Регистрация</button>
                 <a href="/login">Уже есть доступ?</a>
-                <a href="/registrationUser">Я ищу работу</a>
+                <a href="/registration">Вы работодатель?</a>
             </div>
         </form>
     </div>

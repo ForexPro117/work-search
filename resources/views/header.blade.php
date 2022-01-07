@@ -46,7 +46,7 @@
     @yield("bodyContent")
 
 </main>
-<footer
+{{--<footer
     class="d-flex flex-wrap justify-content-around py-3 my-4 border-top @if($_SERVER["REQUEST_URI"]!="/bdView")fixed-bottom @endif">
     <div>
         <span class="text-muted">© 2022 Company, Inc</span>
@@ -57,6 +57,6 @@
     <div>
         <a class="text-muted text-decoration-none" href="https://www.google.ru/">email@example.com</a>
     </div>
-</footer>
+</footer>--}}
 </body>
 </html>
