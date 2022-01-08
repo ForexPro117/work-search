@@ -9,15 +9,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
+
     <title>Work</title>
 </head>
 <body>
-<header class="p-2 bg-dark text-white">
+<header class="p-2 border-bottom">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <ul class="nav col-12 col-lg-auto me-lg-auto justify-content-center mb-md-0">
-                <li><a href="/" class="nav-link px-2 text-white">Главная</a></li>
-                <li><a href="" class="nav-link px-2 text-secondary">База данных</a></li>
+                <li><a href="/" class="nav-link px-2 link-secondary">Главная</a></li>
+                <li><a href="" class="nav-link px-2 link-dark">Все вакансии</a></li>
+                <li><a href="/registrationUser" class="nav-link px-2 link-dark">Стать соискателем</a></li>
+                <li><a href="/registration" class="nav-link px-2 link-dark">Стать работодателем</a></li>
             </ul>
             <div class="text-end nav">
                 @if(Auth::check())
@@ -27,16 +30,11 @@
                     </button>
                 @else
                     <div>
-                        <button type="button" class="btn btn-outline-light me-2"
+                        <button type="button" class="btn btn-outline-primary me-2"
                                 onclick="location.href='{{route('login')}}'">Войти
                         </button>
                     </div>
-                    <div>
-                        <button type="button" class="btn btn-outline-success" onclick="location.href='{{route('register')}}'">
-                            Регистрация
-                        </button>
 
-                    </div>
                 @endauth
             </div>
         </div>

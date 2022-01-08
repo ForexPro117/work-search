@@ -1,32 +1,14 @@
 @extends('header')
 <title>Главная</title>
+{{--<link rel="stylesheet" href="{{ asset('css/home.css') }}">--}}
 @section('bodyContent')
-    @if(session('status')=='success')
-        <div class="alert alert-success container">
-            Вы успешно вошли в систему!
-            <button type="button" class="btn-close" aria-label="Close"></button>
-        </div>
-    @elseif(session('status')=="exit")
-        <div class="alert alert-danger container">
-            Вы вышли из системы!
-            <button type="button" class="btn-close" aria-label="Close"></button>
-        </div>
-    @endif
-    @if ($errors->any())
-        <div class="alert alert-danger container">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-    @if(Auth::check())
-        <div class="container mt-5"><h1>Моё почтение {{request()->user()->email}}</h1></div>
-    @else()
-        <div class="container mt-5"><h1>Для редактирования,
-                нужно авторизоваться и совершить двойное нажатие по нужному столбцу!</h1></div>
-    @endauth
 
-    <script src="{{ asset('js/homeBlade.js') }}"></script>
+    <div class="container d-flex flex-column align-items-center mt-5">
+        <h1>Работа найдется для каждого</h1>
+        <form class="input-group mt-4" method="POST" action="/res/zax">
+            <input type="text" class="form-control" placeholder="Введите название" name="search">
+            <button class="btn btn-outline-primary" type="submit" >Найти работу</button>
+        </form>
+    </div>
+
 @endsection
