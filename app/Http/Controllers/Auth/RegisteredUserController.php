@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\EmployerData;
 use App\Models\User;
+use App\Models\UserData;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -31,66 +33,70 @@ class RegisteredUserController extends Controller
     /**
      * Handle an incoming registration request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
-        $user=User::first();
-        dd($user);
         $request->validate([
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'name'=>'required|string|max:60',
-            'lastname'=>'required|string|max:60',
-            'phoneNumber'=>'required|numeric|min:6|max:12',
-            'companyName'=>'required|string|max:80',
+            'name' => 'required|string|max:60',
+            'lastname' => 'required|string|max:60',
+            'phoneNumber' => 'required|min:6|max:12',
+            'companyName' => 'required|string|max:80',
         ]);
 
-   /*     public function addUser()
-    {
-        $user=new User();
-        $user->name=$data->name;
-        $user->email=$data->email;
-        $user->role='user';
-        $user->password=Hash::make($data->policy);
+        $user = new User();
+        $user->email = $request->email;
+        $user->role = 'employer';
+        $user->password = Hash::make($request->password);
         $user->save();
-jjjjjjjjjjjjjjjjjjjjjjjjjjj
-        return view("admin.admin_panel_user_list",
-            ['users' => User::where('role', 'user')->get()]);
-    }*/
 
-        /*$user = User::create([
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $employer=new EmployerData();
+        $employer->employer_id=$user->id;
+        $employer->name=$request->name;
+        $employer->lastname=$request->lastname;
+        $employer->phone_number=$request->phoneNumber;
+        $employer->company_name=$request->companyName;
+        $employer->save();
+
 
         event(new Registered($user));
 
-        Auth::login($user);*/
+        Auth::login($user);
 
         return back()->with('status', 'success');
     }
+
     public function storeUser(Request $request)
     {
         $request->validate([
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'name'=>'required|string|max:60',
-            'lastname'=>'required|string|max:60',
-            'phoneNumber'=>'nullable|numeric|min:6|max:12',
+            'name' => 'required|string|max:60',
+            'lastname' => 'required|string|max:60',
+            'phoneNumber' => 'nullable|min:6|max:12',
         ]);
 
-        /*$user = User::create([
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $user = new User();
+        $user->email = $request->email;
+        $user->role = 'employer';
+        $user->password = Hash::make($request->password);
+        $user->save();
+
+        $userdata=new UserData();
+        $userdata->user_id=$user->id;
+        $userdata->name=$request->name;
+        $userdata->lastname=$request->lastname;
+        $userdata->phone_number=$request->phoneNumber;
+        $userdata->save();
 
         event(new Registered($user));
 
-        Auth::login($user);*/
+        Auth::login($user);
 
         return back()->with('status', 'success');
     }

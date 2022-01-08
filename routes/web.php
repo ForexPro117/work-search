@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ResponseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,5 +18,13 @@ use Illuminate\Support\Facades\Route;
 Route::view('/', 'home')
     ->name('main');
 
-Route::view('/s', 'main');
+Route::view('/s', 'createWork');
+Route::view('/ss', 'response');
+
+Route::get('/response', [ResponseController::class, 'create'])
+    /*->middleware('auth')*/
+    ->name('response');
+Route::post('/response', [ResponseController::class, 'make'])
+    /*->middleware('auth')*/
+    ->name('response');
 require __DIR__ . '/auth.php';
