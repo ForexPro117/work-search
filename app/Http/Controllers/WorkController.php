@@ -46,4 +46,5 @@ class WorkController extends Controller
             ->get();
         return view('searchWorkList',['works'=>$works,'request'=>$request->search]);
     }
+
 }

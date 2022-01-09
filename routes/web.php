@@ -19,10 +19,21 @@ use Illuminate\Http\Request;
 
 Route::view('/', 'home')
     ->name('home');
-Route::view('/q', 'banner');
-Route::get('/workList',[WorkController::class, 'list']);
 
-Route::post('/workList',[WorkController::class, 'serachList']);
+
+Route::get('/workUserHistory', [ResponseController::class, 'checkUserHistory'])
+    ->middleware('auth', 'can:user-history');
+
+Route::get('/workHistory', [ResponseController::class, 'checkHistory'])
+    ->middleware('auth', 'can:create-work');
+
+Route::get('/download', [ResponseController::class, 'download'])
+    ->middleware('auth')
+    ->name('download');
+
+Route::get('/workList', [WorkController::class, 'list']);
+
+Route::post('/workList', [WorkController::class, 'serachList']);
 
 Route::get('/response', [ResponseController::class, 'create'])
     ->middleware('auth')
@@ -32,9 +43,9 @@ Route::post('/response', [ResponseController::class, 'make'])
     ->name('response');
 
 Route::get('/work', [WorkController::class, 'create'])
-    ->middleware('auth','can:create-work')
+    ->middleware('auth', 'can:create-work')
     ->name('work');
 Route::post('/work', [WorkController::class, 'make'])
-    ->middleware('auth','can:create-work')
+    ->middleware('auth', 'can:create-work')
     ->name('work');
 require __DIR__ . '/auth.php';

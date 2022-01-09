@@ -1,0 +1,38 @@
+.card {
+    width: 350px;
+    padding: 10px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-color: #4a5568;
+}
+.text{
+    color: rgb(60, 157, 242);
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+}
+.description{
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+.price{
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+}
+.list{
+    margin-top: 45px;
+    margin-left: 60px;
+}
+.company{
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color:rgb(149, 151, 153);
+}
+.buton{
+    margin-top: 10px;
+    width: 50%;
+    align-self: center;
+}
+.area{
+    overflow: visible;
+    text-overflow: ellipsis;
+}

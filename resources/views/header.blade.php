@@ -20,17 +20,22 @@
                 <li><a href="/" class="nav-link px-2 link-secondary">Главная</a></li>
                 <li><a href="/workList" class="nav-link px-2 link-info">Все вакансии</a></li>
                 @if(!Auth::check())
-                <li><a href="/registrationUser" class="nav-link px-2 link-primary">Стать соискателем</a></li>
-                <li><a href="/registration" class="nav-link px-2 link-primary">Стать работодателем</a></li>
+                    <li><a href="/registrationUser" class="nav-link px-2 link-primary">Стать соискателем</a></li>
+                    <li><a href="/registration" class="nav-link px-2 link-primary">Стать работодателем</a></li>
                 @endauth
             </ul>
             <div class="text-end nav">
                 @if(Auth::check())
-                    @can('create-work')
-                    <li><a href="/work" class="nav-link px-2 link-success">Создать вакансию</a></li>
+                    @can('user-history')
+                        <li><a href="/workUserHistory" class="nav-link px-2 link-warning">История откликов</a></li>
                     @endcan
-                    <label class="nav-link px-2 link-secondary" >{{request()->user()->email}}</label>
-                    <button type="button" class="btn btn-outline-primary me-2" onclick="location.href='{{route('logout')}}'">
+                    @can('create-work')
+                        <li><a href="/workHistory" class="nav-link px-2 link-warning">Отклики на вакансии</a></li>
+                        <li><a href="/work" class="nav-link px-2 link-success">Создать вакансию</a></li>
+                    @endcan
+                    <label class="nav-link px-2 link-secondary">{{request()->user()->email}}</label>
+                    <button type="button" class="btn btn-outline-primary me-2"
+                            onclick="location.href='{{route('logout')}}'">
                         Выйти
                     </button>
                 @else

@@ -29,4 +29,34 @@ class ResponseController extends Controller
         $response->save();
   return view('banner',['text'=>'Вы успешно оставили свой отклик,']);
     }
+
+
+
+    public function checkUserHistory(Request $request)
+    {
+
+        $responses=Response::where('response.user_id',$request->user()->id)
+            ->leftJoin('works', 'response.work_id', '=', 'works.id')
+            ->leftJoin('employer_data', 'works.employer_id', '=', 'employer_data.employer_id')
+            ->select('response.description as des','response.file',
+                'response.file_original_name','works.*','employer_data.*')
+            ->get();
+        return view('historyUser',['responses'=>$responses]);
+    }
+    public function checkHistory(Request $request)
+    {
+
+        $responses=Response::leftJoin('works', 'response.work_id', '=', 'works.id')
+            ->leftJoin('user_data', 'response.user_id', '=', 'user_data.user_id')
+            ->where('works.employer_id',$request->user()->id)
+            ->select('response.description as des','response.file',
+                'response.file_original_name','works.*','user_data.*')
+            ->get();
+        return view('history',['responses'=>$responses]);
+    }
+    public function download(Request $request)
+    {
+
+        return Storage::download($request->name, $request->origname);
+    }
 }
