@@ -20,6 +20,7 @@
                 <label class="text-danger">{{ $message }}</label>
                 @enderror
             </div>
+            <input type="text" hidden name="workId" value="{{$workId}}">
             <div class="mt-3 d-flex justify-content-between align-items-center ">
                 <button type="submit" style="width: 100%" class="btn btn-primary">Откликнуться</button>
             </div>

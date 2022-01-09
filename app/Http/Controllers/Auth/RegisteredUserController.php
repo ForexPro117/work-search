@@ -83,7 +83,7 @@ class RegisteredUserController extends Controller
 
         $user = new User();
         $user->email = $request->email;
-        $user->role = 'employer';
+        $user->role = 'user';
         $user->password = Hash::make($request->password);
         $user->save();
 

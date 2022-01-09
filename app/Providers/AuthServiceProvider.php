@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -23,8 +24,16 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        /**
+         * Определить, может ли пользователь создать пост.
+         *
+         * @param \App\Models\User $user
+         * @return bool
+         */
         $this->registerPolicies();
 
-        //
+        Gate::define('create-work', function (User $user) {
+            return $user->role == 'employer';
+        });
     }
 }

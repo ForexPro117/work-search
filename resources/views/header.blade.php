@@ -18,14 +18,19 @@
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <ul class="nav col-12 col-lg-auto me-lg-auto justify-content-center mb-md-0">
                 <li><a href="/" class="nav-link px-2 link-secondary">Главная</a></li>
-                <li><a href="" class="nav-link px-2 link-dark">Все вакансии</a></li>
-                <li><a href="/registrationUser" class="nav-link px-2 link-dark">Стать соискателем</a></li>
-                <li><a href="/registration" class="nav-link px-2 link-dark">Стать работодателем</a></li>
+                <li><a href="/workList" class="nav-link px-2 link-info">Все вакансии</a></li>
+                @if(!Auth::check())
+                <li><a href="/registrationUser" class="nav-link px-2 link-primary">Стать соискателем</a></li>
+                <li><a href="/registration" class="nav-link px-2 link-primary">Стать работодателем</a></li>
+                @endauth
             </ul>
             <div class="text-end nav">
                 @if(Auth::check())
-                    <label class="nav-link px-2 text-white">{{request()->user()->email}}</label>
-                    <button type="button" class="btn btn-outline-light me-2" onclick="location.href='{{route('logout')}}'">
+                    @can('create-work')
+                    <li><a href="/work" class="nav-link px-2 link-success">Создать вакансию</a></li>
+                    @endcan
+                    <label class="nav-link px-2 link-secondary" >{{request()->user()->email}}</label>
+                    <button type="button" class="btn btn-outline-primary me-2" onclick="location.href='{{route('logout')}}'">
                         Выйти
                     </button>
                 @else

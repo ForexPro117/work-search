@@ -18,22 +18,23 @@ use Illuminate\Http\Request;
 
 
 Route::view('/', 'home')
-    ->name('main');
+    ->name('home');
+Route::view('/q', 'banner');
+Route::get('/workList',[WorkController::class, 'list']);
 
-Route::view('/s', 'createWork');
-Route::view('/ss', 'response');
-Route::post('/res/',[WorkController::class, 'list']);
+Route::post('/workList',[WorkController::class, 'serachList']);
+
 Route::get('/response', [ResponseController::class, 'create'])
-    /*->middleware('auth')*/
+    ->middleware('auth')
     ->name('response');
 Route::post('/response', [ResponseController::class, 'make'])
-    /*->middleware('auth')*/
+    ->middleware('auth')
     ->name('response');
 
 Route::get('/work', [WorkController::class, 'create'])
-    /*->middleware('auth')*/
+    ->middleware('auth','can:create-work')
     ->name('work');
 Route::post('/work', [WorkController::class, 'make'])
-    /*->middleware('auth')*/
+    ->middleware('auth','can:create-work')
     ->name('work');
 require __DIR__ . '/auth.php';

@@ -14,5 +14,5 @@ class Response extends Model
      * @var bool
      */
     public $timestamps = false;
-    protected $table='respoonse';
+    protected $table='response';
 }

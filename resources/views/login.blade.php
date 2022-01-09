@@ -7,7 +7,7 @@
             @csrf
             <div class="mb-3">
                 <label for="Email" class="form-label fw-bolder">Email</label>
-                <input type="email" autocomplete="on" class="form-control" name="email"
+                <input type="email" class="form-control" name="email"
                        placeholder="email@example.com">
                 @error('email')
                 <label class="text-danger">{{ $message }}</label>
@@ -15,7 +15,7 @@
             </div>
             <div class="mb-3">
                 <label for="Password" class="form-label fw-bolder">Пароль</label>
-                <input type="password" autocomplete="on" class="form-control" name="password"
+                <input type="password" class="form-control" name="password"
                        placeholder="Ваш пароль">
                 @error('password')
                 <label class="text-danger">{{ $message }}</label>

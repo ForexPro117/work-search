@@ -8,9 +8,10 @@ use Illuminate\Support\Facades\Storage;
 
 class ResponseController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
-        return view('response');
+
+        return view('response',['workId'=>$request->workId]);
     }
     public function make(Request $request)
     {
@@ -21,10 +22,11 @@ class ResponseController extends Controller
 
         $response=new Response();
         $response->description=$request->description;
+        $response->user_id=$request->user()->id;
+        $response->work_id=$request->workId;
         $response->file=Storage::put('public', $request->file('file'));
         $response->file_original_name=$request->file('file')->getClientOriginalName();
-        dd($response);
-      /*$path=  Storage::put('public', Request()->file);*/
-
+        $response->save();
+  return view('banner',['text'=>'Вы успешно оставили свой отклик,']);
     }
 }
