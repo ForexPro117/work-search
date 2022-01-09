@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\EmployerData;
 use App\Models\User;
 use App\Models\UserData;
-use App\Providers\RouteServiceProvider;
+use Composer\Util\Http\Response;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -55,12 +54,12 @@ class RegisteredUserController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        $employer=new EmployerData();
-        $employer->employer_id=$user->id;
-        $employer->name=$request->name;
-        $employer->lastname=$request->lastname;
-        $employer->phone_number=$request->phoneNumber;
-        $employer->company_name=$request->companyName;
+        $employer = new EmployerData();
+        $employer->employer_id = $user->id;
+        $employer->name = $request->name;
+        $employer->lastname = $request->lastname;
+        $employer->phone_number = $request->phoneNumber;
+        $employer->company_name = $request->companyName;
         $employer->save();
 
 
@@ -68,7 +67,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return back()->with('status', 'success');
+        return redirect('/');
     }
 
     public function storeUser(Request $request)
@@ -87,17 +86,17 @@ class RegisteredUserController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        $userdata=new UserData();
-        $userdata->user_id=$user->id;
-        $userdata->name=$request->name;
-        $userdata->lastname=$request->lastname;
-        $userdata->phone_number=$request->phoneNumber;
+        $userdata = new UserData();
+        $userdata->user_id = $user->id;
+        $userdata->name = $request->name;
+        $userdata->lastname = $request->lastname;
+        $userdata->phone_number = $request->phoneNumber;
         $userdata->save();
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return back()->with('status', 'success');
+        return redirect('/');
     }
 }

@@ -31,8 +31,7 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
-        return back()->with('status', 'success');
+        return redirect('/');
     }
 
     /**
@@ -49,6 +48,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return back()->with('status', 'exit');
+        return redirect('/');
     }
 }

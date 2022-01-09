@@ -14,6 +14,7 @@ class WorkController extends Controller
 
     public function make(Request $request)
     {
+
         $request->validate([
             'name' => 'required|string|max:60',
             'price' => 'nullable|integer|max:9999999',
@@ -29,7 +30,7 @@ class WorkController extends Controller
 
     }
 
-    public function list(Request $request)
+    public function list()
     {
         $works=Work::leftJoin('employer_data', 'works.employer_id', '=', 'employer_data.employer_id')
             ->select('works.*','company_name')
