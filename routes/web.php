@@ -44,6 +44,8 @@ Route::post('/response', [ResponseController::class, 'make'])
     ->middleware('auth')
     ->name('response');
 
+Route::post('/deleteResponse', [ResponseController::class, 'delete']);
+
 Route::get('/work', [WorkController::class, 'create'])
     ->middleware('auth', 'can:create-work')
     ->name('work');

@@ -49,7 +49,7 @@ class ResponseController extends Controller
         $responses=Response::leftJoin('works', 'response.work_id', '=', 'works.id')
             ->leftJoin('user_data', 'response.user_id', '=', 'user_data.user_id')
             ->where('works.employer_id',$request->user()->id)
-            ->select('response.description as des','response.file',
+            ->select('response.id as responseId','response.description as des','response.file',
                 'response.file_original_name','works.*','user_data.*')
             ->get();
         return view('history',['responses'=>$responses]);
@@ -58,5 +58,11 @@ class ResponseController extends Controller
     {
 
         return Storage::download($request->name, $request->origname);
+    }
+    public function delete(Request $request)
+    {
+     Response::find($request->responseId)->delete();
+
+        return 'good';
     }
 }

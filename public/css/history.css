@@ -27,12 +27,20 @@
     font-size: 12px;
     color:rgb(149, 151, 153);
 }
-.buton{
+.btn-box{
     margin-top: 10px;
+}
+.buton{
+
     width: 50%;
     align-self: center;
+    margin-left: 80px;
 }
 .area{
     overflow: visible;
     text-overflow: ellipsis;
+}
+.exit {
+    margin-left: auto;
+    align-self: center;
 }

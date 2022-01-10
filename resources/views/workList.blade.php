@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{ asset('css/worklist.css') }}">
 @section('bodyContent')
     <h1 class="d-flex flex-column align-items-center mt-5">Все доступные вакансии</h1>
-    <div class="list d-flex flex-wrap justify-content-">
+    <div class="list d-flex flex-wrap">
         @foreach($works as $work)
             <div class="border border-primary card " id="{{$work->id}}">
                 <div class="d-flex justify-content-between flex-wrap">

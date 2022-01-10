@@ -4,7 +4,7 @@
 @section('bodyContent')
     <div class="container d-flex flex-column align-items-center mt-5">
         <h1>История ваших откликов</h1>
-        <div class="list d-flex flex-wrap justify-content-">
+        <div class="list d-flex flex-wrap">
             @foreach($responses as $response)
                 <div class="border border-primary card ">
                     <div class="d-flex justify-content-between flex-wrap">
