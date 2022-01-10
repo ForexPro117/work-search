@@ -47,5 +47,10 @@ class WorkController extends Controller
             ->get();
         return view('searchWorkList',['works'=>$works,'request'=>$request->search]);
     }
+    public function delete(Request $request)
+    {
+      Work::find($request->workId)->delete();
 
+        return "good";
+    }
 }

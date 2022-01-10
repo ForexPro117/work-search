@@ -35,6 +35,8 @@ Route::get('/workList', [WorkController::class, 'list']);
 
 Route::post('/workList', [WorkController::class, 'serachList']);
 
+Route::post('/deleteWork', [WorkController::class, 'delete']);
+
 Route::get('/response', [ResponseController::class, 'create'])
     ->middleware('auth')
     ->name('response');

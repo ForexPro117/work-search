@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\EmployerData;
 use App\Models\User;
 use App\Models\UserData;
 use Composer\Util\Http\Response;
@@ -44,7 +45,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'name' => 'required|string|max:60',
             'lastname' => 'required|string|max:60',
-            'phoneNumber' => 'required|min:6|max:12',
+            'phoneNumber' => 'required|integer|min:100000|max:89999999999',
             'companyName' => 'required|string|max:80',
         ]);
 
@@ -77,7 +78,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'name' => 'required|string|max:60',
             'lastname' => 'required|string|max:60',
-            'phoneNumber' => 'nullable|min:6|max:12',
+            'phoneNumber' => 'required|integer|min:100000|max:89999999999',
         ]);
 
         $user = new User();
